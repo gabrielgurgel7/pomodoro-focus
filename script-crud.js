@@ -56,7 +56,7 @@ function criarElementoTarefa(tarefa) {
   const imgBotao =
     document.createElement("img"); /* Fabrica o quadro em branco */
   /* Atribui o diretório da imagem ao atributo src do */
-  imgBotao.setAttribute("src", "/imagens/edit.png"); /* Pinta o quadro */
+  imgBotao.setAttribute("src", "imagens/edit.png"); /* Pinta o quadro */
   /* Insere a imagem dentro do botão */
   botao.append(imgBotao); /* Coloca o quadro na parede */
 

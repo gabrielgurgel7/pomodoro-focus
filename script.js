@@ -60,7 +60,7 @@ function alterarContexto(contexto) {
     contexto.classList.remove("active");
   });
   html.setAttribute("data-contexto", contexto);
-  banner.setAttribute("src", `/imagens/${contexto}.png`);
+  banner.setAttribute("src", `imagens/${contexto}.png`);
 
   switch (contexto) {
     case "foco":
@@ -103,13 +103,13 @@ function iniciarOuPausar() {
   musicaPlay.play();
   intervaloId = setInterval(contagemRegressiva, 1000);
   btnStartPauseText.textContent = "Pausar";
-  iconePlayPause.setAttribute("src", `/imagens/pause.png`);
+  iconePlayPause.setAttribute("src", `imagens/pause.png`);
 }
 
 function zerar() {
   clearInterval(intervaloId);
   btnStartPauseText.textContent = "Começar";
-  iconePlayPause.setAttribute("src", `/imagens/play_arrow.png`);
+  iconePlayPause.setAttribute("src", `imagens/play_arrow.png`);
   intervaloId = null;
 }
 
