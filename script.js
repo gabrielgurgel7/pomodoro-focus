@@ -14,11 +14,11 @@ const btnDescansoLongo = document.querySelector(".app__card-button--longo");
 
 /* MÚSICAS */
 const musicaFocoInput = document.querySelector("#alternar-musica");
-const musica = new Audio("/sons/luna-rise-part-one.mp3");
+const musica = new Audio("sons/luna-rise-part-one.mp3");
 musica.loop = true;
-const musicaPlay = new Audio("/sons/play.wav");
-const musicaPause = new Audio("/sons/pause.mp3");
-const musicaBeep = new Audio("/sons/beep.mp3");
+const musicaPlay = new Audio("sons/play.wav");
+const musicaPause = new Audio("sons/pause.mp3");
+const musicaBeep = new Audio("sons/beep.mp3");
 
 /* ÍCONES */
 const iconePlayPause = document.querySelector(".app__card-primary-butto-icon");
