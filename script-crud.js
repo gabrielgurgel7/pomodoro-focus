@@ -1,13 +1,14 @@
+/* Botões */
 const btnAddTarefa = document.querySelector(".app__button--add-task");
 const btnCancelar = document.querySelector(".app__form-footer__button--cancel");
 const btbDeletar = document.querySelector(".app__form-footer__button--delete");
 
+/* Formulário */
 const formAddTarefa = document.querySelector(".app__form-add-task");
-
 const textArea = document.querySelector(".app__form-textarea");
 
+/* Lista de tarefas */
 const ulTarefas = document.querySelector(".app__section-task-list");
-
 const tarefas = JSON.parse(localStorage.getItem("tarefas")) || [];
 
 /* Função que salva e persiste tarefas */
@@ -15,6 +16,7 @@ function atualizarTarefas() {
   localStorage.setItem("tarefas", JSON.stringify(tarefas));
 }
 
+/* Função que cria o elemento HTML para cada tarefa */
 function criarElementoTarefa(tarefa) {
   /* Cria o elemento li */
   const li = document.createElement("li");
@@ -67,19 +69,31 @@ function criarElementoTarefa(tarefa) {
   return li;
 }
 
+/* Escuta o click no ESC do teclado e fecha o formulário */
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    formAddTarefa.reset();
+    formAddTarefa.classList.add("hidden");
+  }
+});
+
+/* Abre e fecha o formulário */
 btnAddTarefa.addEventListener("click", () => {
   formAddTarefa.classList.toggle("hidden");
 });
 
+/* Deleta o conteúdo do formulário */
 btbDeletar.addEventListener("click", () => {
   textArea.value = "";
 });
 
+/* Cancela a adição de tarefa e fecha o formulário */
 btnCancelar.addEventListener("click", () => {
-  textArea.value = "";
+  formAddTarefa.reset();
   formAddTarefa.classList.add("hidden");
 });
 
+/* Adiciona uma nova tarefa */
 formAddTarefa.addEventListener("submit", (e) => {
   e.preventDefault();
   const tarefa = {
@@ -93,6 +107,7 @@ formAddTarefa.addEventListener("submit", (e) => {
   formAddTarefa.classList.add("hidden");
 });
 
+/* Cria os elementos de tarefa */
 tarefas.forEach((tarefa) => {
   const elementoTarefa = criarElementoTarefa(tarefa);
   ulTarefas.append(elementoTarefa);

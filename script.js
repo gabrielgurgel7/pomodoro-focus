@@ -1,10 +1,10 @@
-/* ELEMENTOS DA PÁGINA */
+/* Elementos da página */
 const html = document.querySelector("html");
 const temporizador = document.querySelector("#timer");
 const banner = document.querySelector(".app__image");
 const titulo = document.querySelector(".app__title");
 
-/* BOTÕES */
+/* Botões */
 const botoes = document.querySelectorAll(".app__card-button");
 const btnStartPause = document.querySelector("#start-pause");
 const btnStartPauseText = document.querySelector("#start-pause span");
@@ -12,7 +12,7 @@ const btnFoco = document.querySelector(".app__card-button--foco");
 const btnDescansoCurto = document.querySelector(".app__card-button--curto");
 const btnDescansoLongo = document.querySelector(".app__card-button--longo");
 
-/* MÚSICAS */
+/* Músicas */
 const musicaFocoInput = document.querySelector("#alternar-musica");
 const musica = new Audio("sons/luna-rise-part-one.mp3");
 musica.loop = true;
@@ -20,14 +20,14 @@ const musicaPlay = new Audio("sons/play.wav");
 const musicaPause = new Audio("sons/pause.mp3");
 const musicaBeep = new Audio("sons/beep.mp3");
 
-/* ÍCONES */
+/* Ícone de play/pause */
 const iconePlayPause = document.querySelector(".app__card-primary-butto-icon");
 
-/* TEMPORIZADOR */
+/* Temporizador */
 let tempoDecorridoEmSegundos = 1500;
 let intervaloId = null;
 
-/* FUNÇÕES EVENTO DE CLICK */
+/* Função para alternar a música de foco */
 musicaFocoInput.addEventListener("change", () => {
   if (musica.paused) {
     musica.play();
@@ -36,24 +36,28 @@ musicaFocoInput.addEventListener("change", () => {
   }
 });
 
+/* Escuta o click no botão de foco */
 btnFoco.addEventListener("click", () => {
   tempoDecorridoEmSegundos = 1500;
   alterarContexto("foco");
   btnFoco.classList.add("active");
 });
 
+/* Escuta o click no botão de descanso curto */
 btnDescansoCurto.addEventListener("click", () => {
   tempoDecorridoEmSegundos = 300;
   alterarContexto("descanso-curto");
   btnDescansoCurto.classList.add("active");
 });
 
+/* Escuta o click no botão de descanso longo */
 btnDescansoLongo.addEventListener("click", () => {
   tempoDecorridoEmSegundos = 900;
   alterarContexto("descanso-longo");
   btnDescansoLongo.classList.add("active");
 });
 
+/* Função para alterar o contexto */
 function alterarContexto(contexto) {
   mostrarTempo();
   botoes.forEach(function (contexto) {
@@ -80,7 +84,7 @@ function alterarContexto(contexto) {
   }
 }
 
-/* FUNÇÕES TEMPORIZADOR */
+/* Função para contagem regressiva */
 const contagemRegressiva = () => {
   if (tempoDecorridoEmSegundos <= 0) {
     musicaBeep.play();
@@ -92,8 +96,10 @@ const contagemRegressiva = () => {
   mostrarTempo();
 };
 
+/* Escuta o click no botão de start/pause */
 btnStartPause.addEventListener("click", iniciarOuPausar);
 
+/* Função para iniciar ou pausar o temporizador */
 function iniciarOuPausar() {
   if (intervaloId) {
     zerar();
@@ -106,6 +112,7 @@ function iniciarOuPausar() {
   iconePlayPause.setAttribute("src", `imagens/pause.png`);
 }
 
+/* Função para zerar o temporizador */
 function zerar() {
   clearInterval(intervaloId);
   btnStartPauseText.textContent = "Começar";
@@ -113,6 +120,7 @@ function zerar() {
   intervaloId = null;
 }
 
+/* Função para mostrar o tempo */
 function mostrarTempo() {
   const tempo = new Date(tempoDecorridoEmSegundos * 1000);
   const tempoFormatado = tempo.toLocaleTimeString("pt-BR", {
