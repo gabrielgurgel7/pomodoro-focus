@@ -10,6 +10,12 @@ const textArea = document.querySelector(".app__form-textarea");
 /* Lista de tarefas */
 const ulTarefas = document.querySelector(".app__section-task-list");
 const tarefas = JSON.parse(localStorage.getItem("tarefas")) || [];
+let tarefaSelecionada = null;
+
+/* Descrição da tarefa selecionada */
+const paragrafoDescricaoTarefa = document.querySelector(
+  ".app__section-active-task-description",
+);
 
 /* Função que salva e persiste tarefas */
 function atualizarTarefas() {
@@ -65,6 +71,22 @@ function criarElementoTarefa(tarefa) {
   li.append(svg); /* Aqui é a mesma coisa -> coloca o svg dentro de li */
   li.append(paragrafo);
   li.append(botao);
+
+  /* Mostra a descrição da tarefa ao clicar (em andamento) */
+  li.onclick = () => {
+    document.querySelectorAll(".app__section-task-list-item").forEach((el) => {
+      el.classList.remove("app__section-task-list-item-active");
+    });
+    if (tarefaSelecionada === tarefa) {
+      paragrafoDescricaoTarefa.textContent = "";
+      tarefaSelecionada = null;
+      return;
+    }
+    tarefaSelecionada = tarefa;
+    paragrafoDescricaoTarefa.textContent = tarefa.descricao;
+
+    li.classList.add("app__section-task-list-item-active");
+  };
 
   return li;
 }
