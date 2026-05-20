@@ -24,7 +24,7 @@ const musicaBeep = new Audio("sons/beep.mp3");
 const iconePlayPause = document.querySelector(".app__card-primary-butto-icon");
 
 /* Temporizador */
-let tempoDecorridoEmSegundos = 1500;
+let tempoDecorridoEmSegundos = 30;
 let intervaloId = null;
 
 /* Função para alternar a música de foco */
@@ -89,6 +89,11 @@ const contagemRegressiva = () => {
   if (tempoDecorridoEmSegundos <= 0) {
     musicaBeep.play();
     alert("Tempo finalizado!");
+    const focoAtivo = html.getAttribute("data-contexto") == "foco";
+    if (focoAtivo) {
+      const evento = new CustomEvent("focoFinalizado");
+      document.dispatchEvent(evento);
+    }
     zerar();
     return;
   }
