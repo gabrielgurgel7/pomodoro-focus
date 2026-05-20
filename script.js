@@ -24,7 +24,7 @@ const musicaBeep = new Audio("sons/beep.mp3");
 const iconePlayPause = document.querySelector(".app__card-primary-butto-icon");
 
 /* Temporizador */
-let tempoDecorridoEmSegundos = 30;
+let tempoDecorridoEmSegundos = 1500;
 let intervaloId = null;
 
 /* Função para alternar a música de foco */
