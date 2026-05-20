@@ -395,8 +395,11 @@ h6 {
 }
 
 .app__section-task-list {
+  max-height: 400px;
+  height: 100%;
   margin-top: 2.4rem;
   margin-bottom: 4rem;
+  overflow-y: scroll;
 }
 
 .app__section-task-list-item {
